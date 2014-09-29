@@ -17,7 +17,7 @@ class SgfParser:
     def tokenizeSgfFile(filename):
         file = open(filename, 'r')
         try:
-            tokens = SgfParser._sgfSplit(file.read().replace('\r','').replace('\n','').replace(' ',''))
+            tokens = SgfParser._sgfSplit(file.read().replace('\n','').replace('\r','').replace(' ',''))
         except UnicodeDecodeError:
             logging.warning("Invalid utf-8 character found in " + str(filename) + "; skipping.")
             raise SgfParsingError
@@ -42,10 +42,9 @@ class SgfParser:
                 
             if bracket_count < 0:
                 raise SgfParsingError("']' bracket found without an opening '[' bracket.")
-            
+        
         if run <= index:
-            tokens.append(string[run:index])
-        #logging.debug(tokens)
+            tokens.append(string[run:])
         return tokens
     
     @staticmethod

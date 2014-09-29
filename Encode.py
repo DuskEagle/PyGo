@@ -4,14 +4,14 @@ import StreamingPickle
 
 logging.basicConfig(level=logging.DEBUG)
 
-sgf_files_file = open("sgffiles.txt")
+sgf_files_file = open("data/sgffiles.txt")
 # TEST: Windows
 sgf_files = list(map(lambda filename : filename.strip('\n').strip('\r'), sgf_files_file.readlines()))
 sgf_files_file.close()
 
-training_file = open("training-data.pkl", "wb")
-validation_file = open("validation-data.pkl", "wb")
-testing_file = open("testing-data.pkl", "wb")
+training_file = open("data/training-data.pkl", "wb")
+validation_file = open("data/validation-data.pkl", "wb")
+testing_file = open("data/testing-data.pkl", "wb")
 
 games_per_batch = 100
 #for i in range(0, len(sgf_files), games_per_batch):

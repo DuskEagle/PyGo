@@ -7,8 +7,8 @@ class SgfLoader():
     def loadData(filenames, format, library):
         ''' Parse the SGF files given by filenames and set up the data
         in the format for our neural network. '''
-        assert library in ("pybrain", "theano")
         assert format in ("format1, format2, liberty1")
+        assert library in ("pybrain", "theano")
         
         data = ([], [])
         for filename in filenames:
@@ -34,6 +34,9 @@ class SgfLoader():
 
             for token_index, token in enumerate(game_tokens):
                 intersection = SgfParser.parseSgfToken(token, 19)
+                if intersection == None:
+                    continue
+                
                 reverse = token_index % 2 != 0
                 if format == "format1":
                     x_set.append(board.toArrayFormat1(reverse))
